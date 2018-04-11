@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Rajdhani');
+
+ .branding__title{
+    font-family: 'Rajdhani' !important;
+    text-transform: uppercase;
+    font-size: 2em !important;
+}
