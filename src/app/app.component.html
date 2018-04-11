@@ -1,0 +1,30 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<main class="main-container">
+
+  <app-navbar></app-navbar>
+
+  <div class="content-container">
+    <section class="content-area">
+      <div class="row">
+        <app-deck-common 
+          [deck]="leftDeck" 
+          [volume]='this.mixer.volumeAValue'
+          [eqHi]='this.mixer.hiBandAValue'
+          [eqMid]='this.mixer.midBandAValue'
+          [eqLo]='this.mixer.loBandAValue'>
+        </app-deck-common>
+
+        <app-mixer #mixer></app-mixer>
+
+        <app-deck-common 
+          [deck]="rightDeck" 
+          [volume]='this.mixer.volumeBValue'
+          [eqHi]='this.mixer.hiBandBValue'
+          [eqMid]='this.mixer.midBandBValue'
+          [eqLo]='this.mixer.loBandBValue'>
+        </app-deck-common>
+      </div>
+    </section>
+    <app-sidenav></app-sidenav>
+  </div>
+</main>

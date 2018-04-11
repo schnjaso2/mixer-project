@@ -1,0 +1,95 @@
+<section>
+  <header class="header">Hola</header>
+  <div class="card">
+    <div class="row">
+      <div class="col-xl-3 col-md-3 mixer-eq">
+        hi
+        <div ui-knob value="0" (valueChange)="OnHiBandAChange($event)" [options]="knobOptions" class="eq"></div>
+        mid
+        <div ui-knob value="0" (valueChange)="OnMidBandAChange($event)" [options]="knobOptions" class="eq"></div>
+        lo
+        <div ui-knob value="0" (valueChange)="OnLoBandAChange($event)" [options]="knobOptions" class="eq"></div>
+      </div>
+      <div class="col-xl-3 col-md-3 volume-slider">
+        <div 
+        d3-slider
+        #volumeSliderA
+        id='volume-slider-a'
+        [vertical]="'true'" 
+        [align]="'center'"
+        [length]="200"
+        [direction]="'RTL'"
+        [maxValue]="1"
+        [minValue]="0"
+        [step]="0.1"
+        [initialValue]="0.5"
+        [lineWidth]="16"
+        [emptyColor]="'#000'"
+        [color]="deckASliderColor"
+        [thumbSize]="9"
+        [thumbColor]="'#1b2a32'"
+        [thumbStrokeWidth]="2"
+        [thumbStroke]="'#0081A7'"
+        (selectedValue)="OnVolumeAChange($event)"
+        ></div>
+      </div>
+      <div class="col-xl-3 col-md-3 volume-slider">
+        <div 
+        d3-slider
+        #volumeSliderB
+        id='volume-slider-b'
+        [vertical]="'true'"
+        [align]="'center'" 
+        [length]="200"
+        [direction]="'RTL'"
+        [maxValue]="1"
+        [minValue]="0"
+        [step]="0.1"
+        [initialValue]="0.5"
+        [lineWidth]="16"
+        [emptyColor]="'#000'"
+        [color]="deckBSliderColor"
+        [thumbSize]="9"
+        [thumbColor]="'#1b2a32'"
+        [thumbStrokeWidth]="2"
+        [thumbStroke]="'#0081A7'"
+        (selectedValue)="OnVolumeBChange($event)"
+        ></div>
+      </div>
+      <div class="col-xl-3 col-md-3 mixer-eq">
+        hi
+        <div ui-knob value="0" (valueChange)="OnHiBandBChange($event)"[options]="knobOptions" class="eq"></div>
+        mid
+        <div ui-knob value="0" (valueChange)="OnMidBandBChange($event)" [options]="knobOptions" class="eq"></div>
+        lo
+        <div ui-knob value="0" (valueChange)="OnLoBandBChange($event)"[options]="knobOptions" class="eq"></div>
+      </div>
+    </div>
+    <div class="row crossfade">
+      <div class="col-xl-12">
+        <div class="triangle-left triangle" [style.border-bottom-color]="deckASliderColor"></div>
+        <div class="triangle-right triangle" [style.border-bottom-color]="deckBSliderColor"></div>
+        <div 
+        d3-slider 
+        id="crosssfade-slider"
+        class="crosssfade-slider"
+        [align]="'center'"
+        [length]="100"
+        [direction]="'LTR'"
+        [maxValue]="2"
+        [minValue]="0"
+        [step]="0.1"
+        [initialValue]="1"
+        [lineWidth]="16"
+        [color]="'#000'"
+        [emptyColor]="'#000'"
+        [thumbSize]="12"
+        [thumbColor]="'#1b2a32'"
+        [thumbStrokeWidth]="2"
+        [thumbStroke]="'#0081A7'"
+        (selectedValue)="onCrossFade($event)"
+        ></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+  <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active" class="openFilesBtn">
+    <clr-icon clrVerticalNavIcon shape="folder-open"></clr-icon>
+    <input type="file" name="openFiles" id="openFiles" (change)="OpenFiles($event)" multiple class="fileInput">
+    <label for="openFiles">Open Files</label>
+  </a>
+  <ul class="songlist">
+    <li class="btn-group">
+        <button class="btn ">Sort By</button>
+        <button class="btn">Artist</button>
+        <button class="btn">Duration</button>
+    </li>
+    <li *ngFor="let track of playList">
+      <a clrVerticalNavLink class="btn btn-link btn-block" (click)="LoadTrack(track)">
+        <clr-icon clrVerticalNavIcon shape="play" size="16"></clr-icon>
+        {{track.name}}
+      </a>
+    </li>
+  </ul>
+</clr-vertical-nav>
