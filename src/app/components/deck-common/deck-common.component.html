@@ -23,9 +23,9 @@
   <!-- TEMPO SLIDER -->
   <div class="row">
     <div class="card speed-container col-xl-1 col-md-1" *ngIf="deck == 'b'">
-      <div d3-slider id='speed-slider-b' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'" [maxValue]="1.2"
-        [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'" [thumbSize]="8"
-        [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
+      <div d3-slider id='speed-slider-b' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'"
+        [maxValue]="1.2" [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'"
+        [thumbSize]="8" [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
       </div>
     </div>
 
@@ -38,6 +38,11 @@
           <div #canvasWindow class="song-window">
             <canvas #canvas class="song-wave" [style.animation-duration]="duration + 's'" [style.animation-play-state]="playState ? 'running': 'paused'"></canvas>
           </div>
+
+          <div class="progress">
+            <progress max="duration" value="0" data-displayval="currentTime"></progress>
+          </div>
+          
         </div>
 
       </div>
@@ -66,9 +71,9 @@
 
     <!-- TEMPO SLIDER -->
     <div class="card speed-container col-xl-1 col-md-1" *ngIf="deck == 'a'">
-      <div d3-slider id='speed-slider-a' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'" [maxValue]="1.2"
-        [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'" [thumbSize]="8"
-        [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
+      <div d3-slider id='speed-slider-a' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'"
+        [maxValue]="1.2" [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'"
+        [thumbSize]="8" [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
       </div>
     </div>
   </div>

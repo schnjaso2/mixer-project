@@ -1,0 +1,80 @@
+.section {
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.section__list {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.title {
+    height: 25px;
+    background-color: #0f171c;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.wrapper__half {
+    width: 50%;
+}
+
+.list {
+    padding: 0 10px;
+    border: 0.2vw solid #0f171c;
+    height: calc(100% - 25px);
+}
+
+.list__artists {
+    width: 30vw;
+    background-color: #404e60;
+}
+
+.list__songs {
+    width: 20vw;
+    background-color: #6c7a8d;
+}
+
+.options {
+    background-color: #0f171c;
+    width: 20vw;
+}
+
+.info {
+  width: 30vw;
+  background-color: #0f171c;
+}
+
+.openFilesBtn {
+  background-color: #0f171c;
+  cursor: pointer;
+}
+
+.fileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.fileInput+label {
+  cursor: pointer;
+}
+
+.addBtn {
+  background-color: #165266;
+  color: #fff;
+}
+
+.songlist {
+  list-style: none;
+}
+
+.songlist a,
+.songlist .btn {
+  font-size: 0.7em;
+}

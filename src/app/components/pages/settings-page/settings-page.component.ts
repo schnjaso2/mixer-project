@@ -1,0 +1,17 @@
+import { Component, OnInit, HostBinding } from '@angular/core';
+
+@Component({
+  selector: 'app-settings-page',
+  templateUrl: './settings-page.component.html',
+  styleUrls: ['./settings-page.component.css']
+})
+export class SettingsPageComponent implements OnInit
+{
+  @HostBinding('class') classes = 'bottom-content';
+  constructor() { }
+
+  ngOnInit()
+  {
+  }
+
+}

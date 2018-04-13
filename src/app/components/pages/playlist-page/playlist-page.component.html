@@ -1,0 +1,31 @@
+<div class="section options">
+  <input type="file" name="openFiles" id="openFiles" (change)="OpenFiles($event)" multiple class="fileInput">
+  <label for="openFiles" class="btn btn-block">Open Files</label>
+  <button class="btn btn-block addBtn" [clrLoading]="submitLoading">load in deck A</button>
+  <button class="btn btn-block addBtn" [clrLoading]="submitLoading">load in deck B</button>
+</div>
+
+<div class="section section__list list__artists">
+  <div class="wrapper__half">
+    <div class="title">Artists</div>
+    <div class="list"></div>
+  </div>
+  
+  <div class="wrapper__half">
+      <div class="title">Albums</div>
+      <div class="list"></div>
+  </div>
+</div>
+
+<div class="section list__songs">
+    <div class="title">Songs</div>
+    <div class="list"></div>
+</div>
+
+
+<div class="section info">
+    <div class="title">Song info</div>
+    <div>
+      
+    </div>
+</div>

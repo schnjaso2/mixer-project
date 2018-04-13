@@ -19,6 +19,6 @@
   "include": [
     "./src",
     "node_modules/angular2-knob/index.ts",
-    "node_modules/ng-d3-slider/d3-slider.directive.ts"
+    // "node_modules/ng-d3-slider/d3-slider.directive.ts"
   ]
 }

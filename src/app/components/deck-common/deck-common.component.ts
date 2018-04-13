@@ -32,27 +32,25 @@ export class DeckCommonComponent implements OnInit
 
   private onFileLoaded(audioData: AudioBuffer)
   {
-    this.duration = this.audioService.audioDuration;
-    this.visualsService.renderWaveForm(audioData, this._soundWaveCanvas);
+    this.duration = this._audioService.audioDuration;
+    this._visualsService.renderWaveForm(audioData, this._soundWaveCanvas);
   }
 
   private Play(): void
   {
-    this.audioService.StartAudio();
+    this._audioService.StartAudio();
     this.StartTimer();
-    this.playState = !this.playState;
   }
 
   private Stop(): void
   {
-    this.audioService.StopAudio();
+    this._audioService.StopAudio();
     this.StopTimer();
-    this.playState = !this.playState;
   }
 
   private StartTimer(): void
   {
-    this._timer = setInterval(() => this.currentTime = this.audioService.contextTimer, 1000);
+    this._timer = setInterval(() => this.currentTime = this._audioService.contextTimer, 1000);
   }
 
   private StopTimer(): void
@@ -63,15 +61,15 @@ export class DeckCommonComponent implements OnInit
 
   private onSpeedChange(value: number)
   {
-    this.audioService.detune = value;
-    this.duration = this.audioService.audioDuration * ((value - 1) * -1 + 1);
+    this._audioService.detune = value;
+    this.duration = this._audioService.audioDuration * ((value - 1) * -1 + 1);
   }
 
   private Connect(destination: string, value: number)
   {
     try
     {
-      this.audioService[destination] = value;
+      this._audioService[destination] = value;
     } catch
     {
       console.log('No Audio Context To Connect To');
@@ -79,8 +77,8 @@ export class DeckCommonComponent implements OnInit
   }
 
   constructor(
-    private audioService: AudioService,
-    private visualsService: VisualsService)
+    private _audioService: AudioService,
+    private _visualsService: VisualsService)
   {
 
   }
@@ -98,9 +96,11 @@ export class DeckCommonComponent implements OnInit
     this._timer = null;
     this.currentTime = 0;
     this.duration = 0;
-    this.playState = false;
+    // this.playState = false;
     this._soundWaveCanvas = this.canvasRef.nativeElement;
-    this.audioService.decodedAudioEmitter
+    this._audioService.readyState = this.deck === 'a' ? true : false;
+    this._audioService.decodedAudioEmitter
       .subscribe(audioData => this.onFileLoaded(audioData));
+    this._audioService.playStateEmitter.subscribe(state => this.playState = state);
   }
 }

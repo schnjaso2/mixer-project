@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.card {
+    margin: 0;
+}
+
+.bottom-panel {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+}
+
+.bottom-content {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  background-color: #bbb;
+}

@@ -5,3 +5,7 @@
     text-transform: uppercase;
     font-size: 2em !important;
 }
+
+a {
+    text-transform: uppercase;
+}
