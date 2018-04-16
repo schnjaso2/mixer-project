@@ -22,14 +22,11 @@
 }
 
 .list {
-    padding: 0 10px;
-    border: 0.2vw solid #0f171c;
+    padding: 0px 10px;
+    border-style: solid;
+    border-color: #0f171c;
+    border-width: 0px 0.2vw;
     height: calc(100% - 25px);
-}
-
-.list__artists {
-    width: 30vw;
-    background-color: #404e60;
 }
 
 .list__songs {
@@ -37,14 +34,10 @@
     background-color: #6c7a8d;
 }
 
-.options {
+.side-panel {
     background-color: #0f171c;
     width: 20vw;
-}
-
-.info {
-  width: 30vw;
-  background-color: #0f171c;
+    padding: 0.5vw;
 }
 
 .openFilesBtn {
@@ -70,11 +63,32 @@
   color: #fff;
 }
 
-.songlist {
+.btn-list{
+    margin: 0;
+    color: #0f171c;
+    border-bottom: 1px solid #165266;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.songList{
   list-style: none;
+  color: #000;
 }
 
 .songlist a,
 .songlist .btn {
   font-size: 0.7em;
+}
+
+.album-art {
+    margin: 0 10px 10px 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.song-info__list{
+    padding: 10px;
 }

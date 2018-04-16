@@ -412,7 +412,8 @@ module.exports = {
       "filename": "scripts.bundle.js",
       "scripts": [
         "C:\\Users\\Ivan\\source\\repos\\SEDC\\Projects\\mixerProject\\node_modules\\@webcomponents\\custom-elements\\custom-elements.min.js",
-        "C:\\Users\\Ivan\\source\\repos\\SEDC\\Projects\\mixerProject\\node_modules\\@clr\\icons\\clr-icons.min.js"
+        "C:\\Users\\Ivan\\source\\repos\\SEDC\\Projects\\mixerProject\\node_modules\\@clr\\icons\\clr-icons.min.js",
+        "C:\Users\Ivan\source\repos\Mixer Project\mixer-project\node_modules\jsmediatags\dist\jsmediatags.min.js"
       ],
       "basePath": "C:\\Users\\Ivan\\source\\repos\\SEDC\\Projects\\mixerProject"
     }),

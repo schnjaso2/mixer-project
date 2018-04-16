@@ -33,6 +33,7 @@ import { NumToPxPipe } from './pipes/num-to-px.pipe';
 
 // _______________________________________________Directives imports
 import { D3SliderDirective } from './directives/d3-slider.directive';
+import { KeysPipe } from './pipes/keys.pipe';
 
 const routes: Routes = [
   { path: 'playlist', component: PlaylistPageComponent },
@@ -56,7 +57,8 @@ const routes: Routes = [
     PageNotFoundComponent,
     MainPageComponent,
     PlaylistPageComponent,
-    EffectsPageComponent
+    EffectsPageComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, HostBinding, ElementRef } from '@angular/core';
 import { AudioService } from './../../services/audio.service';
 import { VisualsService } from '../../services/visuals.service';
-import { Track } from './../../track.interface';
+// import { Track } from './../../track.interface';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class DeckCommonComponent implements OnInit
   private _soundWaveCanvas: HTMLCanvasElement;
   public duration: number;
   public currentTime: number;
-  public trackInfo: Track;
+  // public trackInfo: Track;
   public playState: boolean;
 
   private onFileLoaded(audioData: AudioBuffer)
@@ -85,14 +85,14 @@ export class DeckCommonComponent implements OnInit
 
   ngOnInit()
   {
-    this.trackInfo = {
-      title: 'Song Title',
-      artist: 'Artist',
-      album: 'Album',
-      year: '2018',
-      duration: 240,
-      albumCover: 'assets/img/album-art-placeholder.png'
-    };
+    // this.trackInfo = {
+    //   title: 'Song Title',
+    //   artist: 'Artist',
+    //   album: 'Album',
+    //   year: '2018',
+    //   duration: 240,
+    //   albumCover: 'assets/img/album-art-placeholder.png'
+    // };
     this._timer = null;
     this.currentTime = 0;
     this.duration = 0;

@@ -31,6 +31,7 @@
     "angular2-knob": "^1.1.11",
     "core-js": "^2.4.1",
     "d3": "^4.13.0",
+    "jsmediatags": "^3.8.1",
     "music-metadata": "^0.9.8",
     "musicmetadata": "^2.0.5",
     "request": "^2.79.0",

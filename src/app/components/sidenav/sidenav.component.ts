@@ -23,7 +23,7 @@ export class SidenavComponent implements OnInit
     const filesObject = event.target.files;
     const filesArray = Object.keys(filesObject).map(key => filesObject[key]);
 
-    this.playList = filesArray.map(file => this.fileHandler.ReadID3(file));
+    // this.playList = filesArray.map(file => this.fileHandler.ReadID3(file));
     console.log(this.playList);
   }
 
