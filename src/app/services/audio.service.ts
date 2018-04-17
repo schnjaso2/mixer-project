@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { FilesService } from './files.service';
+// import { FilesService } from './files.service';
 
 @Injectable()
 
@@ -18,7 +18,7 @@ export class AudioService
   private _eqSweep: BiquadFilterNode;
 
   public decodedAudioEmitter: EventEmitter<object>;
-  public readyState;
+  // public readyState;
   public playStateEmitter: EventEmitter<boolean>;
 
   private CreateContext()
@@ -79,7 +79,7 @@ export class AudioService
     this._eqSweep.connect(this._eqLo);
   }
   // ________________________________________________________Public Methods
-  private LoadFile(file: ArrayBuffer)
+  public LoadFile(file: ArrayBuffer)
   {
     if (this._context !== null && this._context.state === 'running')
     {
@@ -131,7 +131,7 @@ export class AudioService
   public get audioDuration() { return this._decodedAudio.duration; }
   public get contextTimer() { return this._context.currentTime; }
 
-  constructor(private filesService: FilesService)
+  constructor()
   {
     this._audioSource = null;
     this._context = null;
@@ -143,18 +143,17 @@ export class AudioService
     this._eqLo = null;
     this._eqSweep = null;
 
-    this.readyState = true;
+    // this.readyState = true;
 
     this.decodedAudioEmitter = new EventEmitter();
     this.playStateEmitter = new EventEmitter();
 
-    this.filesService.song.subscribe(song =>
-    {
-      if (this.readyState === true)
-      {
-        this.LoadFile(song);
-      }
-      this.readyState = !this.readyState;
-    });
+    // this.filesService.song.subscribe(song =>
+    // {
+    //   if (song.deck)
+    //   {
+        
+    //   }
+    // });
   }
 }

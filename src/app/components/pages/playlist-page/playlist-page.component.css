@@ -22,7 +22,6 @@
 }
 
 .list {
-    padding: 0px 10px;
     border-style: solid;
     border-color: #0f171c;
     border-width: 0px 0.2vw;
@@ -65,6 +64,7 @@
 
 .btn-list{
     margin: 0;
+    padding: 0px 10px;
     color: #0f171c;
     border-bottom: 1px solid #165266;
     cursor: pointer;
@@ -73,6 +73,13 @@
     align-items: center;
 }
 
+.evenRow {
+    background-color: #bbd;
+    
+}
+.oddRow{
+    background-color: #ddf;
+}
 .songList{
   list-style: none;
   color: #000;

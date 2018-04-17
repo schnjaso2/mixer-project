@@ -38,7 +38,8 @@ export class VisualsService
         }
       }
 
-      renderContext.fillStyle = `rgb(${Math.abs(max) * 255}, ${127}, ${127})`;
+      // renderContext.fillStyle = `rgb(${Math.abs(max) * 255}, ${127}, ${127})`;
+      renderContext.fillStyle = '#f39c12';
       renderContext.fillRect(i, (1 + min) * amplitude, 1, Math.max(1, (max - min) * amplitude));
     }
     canvasContext.drawImage(render, 0, 0);

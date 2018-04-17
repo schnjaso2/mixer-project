@@ -1,3 +1,4 @@
+import { FilesService } from './../../services/files.service';
 import { Component, OnInit, Input, ViewChild, HostBinding, ElementRef } from '@angular/core';
 import { AudioService } from './../../services/audio.service';
 import { VisualsService } from '../../services/visuals.service';
@@ -78,7 +79,8 @@ export class DeckCommonComponent implements OnInit
 
   constructor(
     private _audioService: AudioService,
-    private _visualsService: VisualsService)
+    private _visualsService: VisualsService,
+    private _filesService: FilesService)
   {
 
   }
@@ -98,7 +100,14 @@ export class DeckCommonComponent implements OnInit
     this.duration = 0;
     // this.playState = false;
     this._soundWaveCanvas = this.canvasRef.nativeElement;
-    this._audioService.readyState = this.deck === 'a' ? true : false;
+    // this._audioService.readyState = this.deck === 'a' ? true : false;
+    this._filesService.song.subscribe(song =>
+    {
+      if (song.deck === this.deck)
+      {
+        this._audioService.LoadFile(song.data);
+      }
+    });
     this._audioService.decodedAudioEmitter
       .subscribe(audioData => this.onFileLoaded(audioData));
     this._audioService.playStateEmitter.subscribe(state => this.playState = state);

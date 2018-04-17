@@ -6,14 +6,14 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 export class FilesService
 {
-  public song = new EventEmitter<ArrayBuffer>();
+  public song = new EventEmitter();
 
-  public Read(file: any)
+  public Read(file: any, deck: string): void
   {
     const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
 
-    fileReader.onload = () => this.song.emit(fileReader.result);
+    fileReader.readAsArrayBuffer(file);
+    fileReader.onload = () => this.song.emit({ data: fileReader.result, deck: deck });
   }
 
   constructor() {
