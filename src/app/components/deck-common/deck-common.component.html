@@ -36,11 +36,13 @@
         <!-- WAVE DISPLAY -->
         <div class=" col-xl-12">
           <div #canvasWindow class="song-window">
-            <canvas #canvas class="song-wave" [style.animation-duration]="duration + 's'" [style.animation-play-state]="playState ? 'running': 'paused'"></canvas>
+            <canvas #canvas 
+              [style.animation-duration]="duration + 's'" 
+              [style.animation-play-state]="playState ? 'running': 'paused'"></canvas>
           </div>
 
           <div class="progress">
-            <progress max="duration" value="0" data-displayval="currentTime"></progress>
+            <progress max="duration" [value]="currentTime || 0" data-displayval="0"></progress>
           </div>
           
         </div>
@@ -52,7 +54,7 @@
           <button *ngIf="!playState" class="btn" (click)="Play()">
             <clr-icon shape="play" class="is-solid"></clr-icon>
           </button>
-          <button *ngIf="playState" class="btn" (click)="Stop()">
+          <button *ngIf="playState" class="btn" (click)="Pause()">
             <clr-icon shape="pause" class="is-solid"></clr-icon>
           </button>
         </div>

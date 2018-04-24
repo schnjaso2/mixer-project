@@ -18,7 +18,6 @@ export class AudioService
   private _eqSweep: BiquadFilterNode;
 
   public decodedAudioEmitter: EventEmitter<object>;
-  // public readyState;
   public playStateEmitter: EventEmitter<boolean>;
 
   private CreateContext()
@@ -40,14 +39,14 @@ export class AudioService
     this._audioSource.buffer = this._decodedAudio;
     this._audioSource.onended = () =>
     {
-      // this.StopAudio();
+      // this.PauseAudio();
       // this._context.close();
     };
   }
 
   private SetConnections()
   {
-    if (this._context === null)
+    if (!this._context)
     {
       console.log('There is no active audio context!');
       return;
@@ -81,9 +80,9 @@ export class AudioService
   // ________________________________________________________Public Methods
   public LoadFile(file: ArrayBuffer)
   {
-    if (this._context !== null && this._context.state === 'running')
+    if (this._context)
     {
-      return;
+      this.StopAudio();
     }
     this.CreateContext();
     this.SetConnections();
@@ -99,7 +98,7 @@ export class AudioService
 
   public StartAudio()
   {
-    if (this._context === null)
+    if (!this._context)
     {
       console.log('There is no active audio context!');
       return;
@@ -110,13 +109,21 @@ export class AudioService
 
   }
 
-  public StopAudio()
+  public PauseAudio()
   {
     this._audioSource.stop();
     this._context.suspend();
     this.CreatePlayBuffer();
     this.playStateEmitter.emit(false);
   }
+
+  public StopAudio()
+  {
+    this._audioSource.stop();  
+    this._context.close();
+    this.playStateEmitter.emit(false);
+  }
+
   // ________________________________________________________Public Setters
   public set gain(inputValue: number) { this._gainNode.gain.setValueAtTime(inputValue, this._context.currentTime); }
   public set detune(inputValue: number) { this._audioSource.playbackRate.setValueAtTime(inputValue, this._context.currentTime); }
@@ -147,13 +154,5 @@ export class AudioService
 
     this.decodedAudioEmitter = new EventEmitter();
     this.playStateEmitter = new EventEmitter();
-
-    // this.filesService.song.subscribe(song =>
-    // {
-    //   if (song.deck)
-    //   {
-        
-    //   }
-    // });
   }
 }

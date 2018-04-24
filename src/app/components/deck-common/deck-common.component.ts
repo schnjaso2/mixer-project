@@ -28,13 +28,14 @@ export class DeckCommonComponent implements OnInit
   private _soundWaveCanvas: HTMLCanvasElement;
   public duration: number;
   public currentTime: number;
-  // public trackInfo: Track;
   public playState: boolean;
 
   private onFileLoaded(audioData: AudioBuffer)
   {
+    this._soundWaveCanvas.classList.remove('song-wave');
     this.duration = this._audioService.audioDuration;
     this._visualsService.renderWaveForm(audioData, this._soundWaveCanvas);
+    this._soundWaveCanvas.classList.add('song-wave');
   }
 
   private Play(): void
@@ -43,9 +44,9 @@ export class DeckCommonComponent implements OnInit
     this.StartTimer();
   }
 
-  private Stop(): void
+  private Pause(): void
   {
-    this._audioService.StopAudio();
+    this._audioService.PauseAudio();
     this.StopTimer();
   }
 

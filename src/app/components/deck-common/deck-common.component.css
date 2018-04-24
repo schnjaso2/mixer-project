@@ -35,8 +35,8 @@
 }
 
 .song-wave {
-  height: 100px;
-  width: 1;
+  /* height: 100px; */
+  /* width: 1; */
   padding: 10px 0px;
   background-color: #000;
   animation-name: soundWaveMove;

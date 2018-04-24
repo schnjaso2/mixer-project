@@ -58,7 +58,6 @@ export class PlaylistPageComponent implements OnInit
         }
       });
     }
-    console.log(this.playList);
   }
 
   public allArtists()
@@ -85,7 +84,6 @@ export class PlaylistPageComponent implements OnInit
 
   public LoadInDeck(deck: string)
   {
-    console.log(this.songSelected);
     if (this.songSelected !== null)
     {
       this.fileService.Read(this.songSelected.data, deck);

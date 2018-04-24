@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class VisualsService
 {
   public canvasWidth: number;
-
+  
   public renderWaveForm(audioBuffer: AudioBuffer, canvas: HTMLCanvasElement)
   {
     const canvasContext = canvas.getContext('2d');
@@ -12,14 +12,16 @@ export class VisualsService
     const sampleRate = audioBuffer.sampleRate;
     const step = Math.ceil(sampleRate / 100);
     const songLength = channelData.length / step;
-
+    
     // ____________________________________________________Pre Render Canvas
     const render = document.createElement('canvas');
     this.canvasWidth = render.width = canvas.width = songLength;
-    render.height = canvas.height;
+    render.height = 80;
     const renderContext = render.getContext('2d');
     const amplitude = render.height / 2;
-
+    
+    canvasContext.clearRect(0, 0, canvas.height, canvas.width);
+    
     for (let i = 0; i < songLength; i++)
     {
       let min = 1.5;
@@ -37,7 +39,7 @@ export class VisualsService
           max = datum;
         }
       }
-
+      
       // renderContext.fillStyle = `rgb(${Math.abs(max) * 255}, ${127}, ${127})`;
       renderContext.fillStyle = '#f39c12';
       renderContext.fillRect(i, (1 + min) * amplitude, 1, Math.max(1, (max - min) * amplitude));
