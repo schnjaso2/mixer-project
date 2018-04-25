@@ -22,12 +22,6 @@ export class AudioService
 
   private CreateContext()
   {
-    if (this._context !== null)
-    {
-      this._context.close();
-      console.log('conext closed');
-    }
-
     this._context = new AudioContext();
     this._context.suspend();
   }
@@ -80,10 +74,11 @@ export class AudioService
   // ________________________________________________________Public Methods
   public LoadFile(file: ArrayBuffer)
   {
-    if (this._context)
+    if(this._context)
     {
       this.StopAudio();
     }
+
     this.CreateContext();
     this.SetConnections();
 
@@ -98,15 +93,12 @@ export class AudioService
 
   public StartAudio()
   {
-    if (!this._context)
+    if (this._context)
     {
-      console.log('There is no active audio context!');
-      return;
+      this._context.resume();
+      this._audioSource.start(0, this.contextTimer);
+      this.playStateEmitter.emit(true);
     }
-    this._context.resume();
-    this._audioSource.start(0, this.contextTimer);
-    this.playStateEmitter.emit(true);
-
   }
 
   public PauseAudio()
@@ -119,7 +111,6 @@ export class AudioService
 
   public StopAudio()
   {
-    this._audioSource.stop();  
     this._context.close();
     this.playStateEmitter.emit(false);
   }

@@ -1,9 +1,7 @@
 import { FilesService } from './../../services/files.service';
-import { Component, OnInit, Input, ViewChild, HostBinding, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef, TemplateRef, ViewChild, HostBinding, ElementRef } from '@angular/core';
 import { AudioService } from './../../services/audio.service';
 import { VisualsService } from '../../services/visuals.service';
-// import { Track } from './../../track.interface';
-
 
 @Component({
   selector: 'app-deck-common',
@@ -14,15 +12,24 @@ import { VisualsService } from '../../services/visuals.service';
 export class DeckCommonComponent implements OnInit
 {
   @Input() deck: string;
-
-  @Input() set volume(value: number) { this.Connect('gain', value); }
-  @Input() set eqHi(value: number) { this.Connect('eqHi', value); }
-  @Input() set eqMid(value: number) { this.Connect('eqMid', value); }
-  @Input() set eqLo(value: number) { this.Connect('eqLo', value); }
+  @Input() set volume(value: number) 
+  { 
+    this.SetValue('gain', value);
+    this._lastSettings[0] = value;
+    this._soundWaveCanvas.style.opacity = (value + 0.4).toString();
+  }
+  @Input() set eqHi(value: number) { this.SetValue('eqHi', value); this._lastSettings[1] = value;}
+  @Input() set eqMid(value: number) { this.SetValue('eqMid', value); this._lastSettings[2] = value;}
+  @Input() set eqLo(value: number) { this.SetValue('eqLo', value); this._lastSettings[3] = value;}
 
   @HostBinding('class') classes = 'col-xl-5 col-md-8';
-  @ViewChild('canvas') canvasRef: ElementRef;
-
+  @ViewChild('canvasWindow', {read: ViewContainerRef} ) canvasWindow: ViewContainerRef;
+  @ViewChild('canvasTemplate') canvasTemplate: TemplateRef<any>;
+  @ViewChild('canvas') canvas: ElementRef;
+  // An Array to remember last used settings, so th newly loaded song will be the same volume,
+  // and have same eq settings.. order is 0: volume, 1: Eq High, 2: Eq Mid, 3: Eq Low.
+  private _lastSettings: Array<number> = [0.5, 0.5, 0.5, 0.5];
+  private 
   // ___________________________________________________Indicators
   private _timer: any;
   private _soundWaveCanvas: HTMLCanvasElement;
@@ -32,10 +39,17 @@ export class DeckCommonComponent implements OnInit
 
   private onFileLoaded(audioData: AudioBuffer)
   {
-    this._soundWaveCanvas.classList.remove('song-wave');
-    this.duration = this._audioService.audioDuration;
+    this.canvasWindow.clear();
+    this.canvasWindow.createEmbeddedView(this.canvasTemplate)
+    this._soundWaveCanvas = this.canvasWindow.element.nativeElement.nextElementSibling;
     this._visualsService.renderWaveForm(audioData, this._soundWaveCanvas);
-    this._soundWaveCanvas.classList.add('song-wave');
+    
+    this.duration = this._audioService.audioDuration;
+    // _________________________________Setting values from the last used settings
+    this.SetValue('gain', this._lastSettings[0]);
+    this.SetValue('eqHi', this._lastSettings[1]);
+    this.SetValue('eqMid', this._lastSettings[2]);
+    this.SetValue('eqLo', this._lastSettings[3]);
   }
 
   private Play(): void
@@ -52,7 +66,11 @@ export class DeckCommonComponent implements OnInit
 
   private StartTimer(): void
   {
-    this._timer = setInterval(() => this.currentTime = this._audioService.contextTimer, 1000);
+    if(this.playState)
+    {
+      this._timer = setInterval(() =>
+        this.currentTime = this._audioService.contextTimer, 500);
+    }
   }
 
   private StopTimer(): void
@@ -67,7 +85,7 @@ export class DeckCommonComponent implements OnInit
     this.duration = this._audioService.audioDuration * ((value - 1) * -1 + 1);
   }
 
-  private Connect(destination: string, value: number)
+  private SetValue(destination: string, value: number)
   {
     try
     {
@@ -88,20 +106,10 @@ export class DeckCommonComponent implements OnInit
 
   ngOnInit()
   {
-    // this.trackInfo = {
-    //   title: 'Song Title',
-    //   artist: 'Artist',
-    //   album: 'Album',
-    //   year: '2018',
-    //   duration: 240,
-    //   albumCover: 'assets/img/album-art-placeholder.png'
-    // };
     this._timer = null;
     this.currentTime = 0;
     this.duration = 0;
-    // this.playState = false;
-    this._soundWaveCanvas = this.canvasRef.nativeElement;
-    // this._audioService.readyState = this.deck === 'a' ? true : false;
+    
     this._filesService.song.subscribe(song =>
     {
       if (song.deck === this.deck)
@@ -109,6 +117,7 @@ export class DeckCommonComponent implements OnInit
         this._audioService.LoadFile(song.data);
       }
     });
+
     this._audioService.decodedAudioEmitter
       .subscribe(audioData => this.onFileLoaded(audioData));
     this._audioService.playStateEmitter.subscribe(state => this.playState = state);

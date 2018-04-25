@@ -3,7 +3,7 @@
       <div class="row">
         <app-deck-common 
           [deck]="leftDeck" 
-          [volume]='this.mixer.volumeAValue'
+          [volume]='this.mixer.masterAValue'
           [eqHi]='this.mixer.hiBandAValue'
           [eqMid]='this.mixer.midBandAValue'
           [eqLo]='this.mixer.loBandAValue'>
@@ -13,7 +13,7 @@
 
         <app-deck-common 
           [deck]="rightDeck" 
-          [volume]='this.mixer.volumeBValue'
+          [volume]='this.mixer.masterBValue'
           [eqHi]='this.mixer.hiBandBValue'
           [eqMid]='this.mixer.midBandBValue'
           [eqLo]='this.mixer.loBandBValue'>

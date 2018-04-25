@@ -35,14 +35,21 @@
 
         <!-- WAVE DISPLAY -->
         <div class=" col-xl-12">
-          <div #canvasWindow class="song-window">
-            <canvas #canvas 
-              [style.animation-duration]="duration + 's'" 
-              [style.animation-play-state]="playState ? 'running': 'paused'"></canvas>
+          
+          <div class="song-window">
+            <ng-container #canvasWindow></ng-container>
           </div>
-
+          <ng-template #canvasTemplate>
+            <canvas #canvas
+              class="song-wave"
+              [style.animation-duration]="duration + 's'" 
+              [style.animation-play-state]="playState ? 'running': 'paused'">
+            </canvas>
+          </ng-template>
+          
+          
           <div class="progress">
-            <progress max="duration" [value]="currentTime || 0" data-displayval="0"></progress>
+            <progress [max]="duration" [value]="currentTime || 0" data-displayval="duration"></progress>
           </div>
           
         </div>

@@ -7,8 +7,12 @@ import { RouterModule, Routes, Route } from '@angular/router';
 import { AppComponent } from './app.component';
 
 // ________________________________________________NPM packages imports
+import { environment } from '../environments/environment';
 import { ClarityModule } from '@clr/angular';
 import { KnobModule } from 'angular2-knob';
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
+// import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // ###################### Program code imports #############################
 // _______________________________________________Services imports
@@ -68,7 +72,10 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       { enableTracing: true }
-    )
+    ),
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireDatabaseModule,
+    // AngularFireAuthModule
   ],
   providers: [
     FilesService,
