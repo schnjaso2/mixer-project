@@ -23,6 +23,7 @@ export class PlaylistPageComponent implements OnInit
   {
     const filesObject = event.target.files;
     const filesArray = Object.keys(filesObject).map(key => filesObject[key]);
+    
     for (const file of filesArray)
     {
       jsMediaTags.read(file, {
@@ -53,11 +54,14 @@ export class PlaylistPageComponent implements OnInit
             data: file,
             duration: file.size,
             year: metadata.tags.year || 'Unknown',
-            albumCover: 'string' || 'assets/img/album-art-placeholder.png'
+            albumCover: 'string' || 'assets/img/album-art-placeholder.png',
+            album: albumName,
+            artist: artistName
           });
         }
       });
     }
+
   }
 
   public allArtists()
@@ -66,13 +70,19 @@ export class PlaylistPageComponent implements OnInit
     this.albumsFiltered = this.playList
       .map(band => band.albums)
       .reduce((a, b) => a.concat(b));
+    this.allAlbums();
   }
 
-  public filterArtist(albums: Array<Album>) { this.albumsFiltered = albums; this.songsFiltered = []; }
+  public filterArtist(albums: Array<Album>) 
+  { 
+    this.albumsFiltered = albums; 
+    this.songsFiltered = [];
+    this.allAlbums(); 
+  }
 
   public allAlbums()
   {
-    this.albumsFiltered = [];
+    this.songsFiltered = [];
     this.songsFiltered = this.albumsFiltered
       .map(album => album.songs)
       .reduce((a, b) => a.concat(b));
@@ -88,6 +98,14 @@ export class PlaylistPageComponent implements OnInit
     {
       this.fileService.Read(this.songSelected.data, deck);
     }
+  }
+
+  public ClearPlaylist()
+  {
+    this.playList = [];
+    this.albumsFiltered = [];
+    this.songsFiltered = [];
+    this.songSelected = null;
   }
   constructor(public fileService: FilesService) { }
 

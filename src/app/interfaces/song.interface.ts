@@ -5,4 +5,6 @@ export interface Song
     duration: number;
     year: string;
     albumCover: string;
+    album: string;
+    artist: string;
 }

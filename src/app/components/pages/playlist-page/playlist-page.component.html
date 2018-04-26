@@ -4,11 +4,11 @@
     <img src="assets/img/album-art-placeholder.png" alt="album art" class="album-art">
     <div>
       <ul class="song-info__list">
-        <li>Artist:</li>
-        <li>Album:</li>
-        <li>Title:</li>
-        <li>Year:</li>
-        <li>Duration:</li>
+        <li>Artist: {{ this.songSelected ? this.songSelected.artist : '...'}} </li>
+        <li>Album: {{ this.songSelected ? this.songSelected.album : '...'}} </li>
+        <li>Title: {{ this.songSelected ? this.songSelected.title : '...'}} </li>
+        <li>Year: {{ this.songSelected ? this.songSelected.year : '...'}} </li>
+        <li>Duration: {{ this.songSelected ? this.songSelected.duration : '0' | timeMmss}} </li>
       </ul>
     </div>
   </div>
@@ -42,7 +42,7 @@
   <div class="list">
     <ul class="songList">
 
-      <li class="btn-list" [class.oddRow]="true">
+      <li class="btn-list" (click)="allAlbums()" [class.oddRow]="true">
         <a>All Albums</a>
         <clr-icon shape="play" size="16"></clr-icon>
       </li>
@@ -82,6 +82,7 @@
   <div class="title">Control</div>
   <input type="file" name="openFiles" id="openFiles" (change)="OpenFiles($event)" multiple class="fileInput">
   <label for="openFiles" class="btn btn-block">Open Files</label>
+  <button class="btn btn-block" (click)="ClearPlaylist()">Clear Playlist</button>
   <button class="btn btn-block addBtn" [clrLoading]="submitLoading" (click)="LoadInDeck('a')">load in deck A</button>
   <button class="btn btn-block addBtn" [clrLoading]="submitLoading" (click)="LoadInDeck('b')">load in deck B</button>
 </div>

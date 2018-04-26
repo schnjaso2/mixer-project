@@ -16,7 +16,10 @@ export class DeckCommonComponent implements OnInit
   { 
     this.SetValue('gain', value);
     this._lastSettings[0] = value;
-    this._soundWaveCanvas.style.opacity = (value + 0.4).toString();
+    if(this._soundWaveCanvas)
+    {
+      this._soundWaveCanvas.style.opacity = (value + 0.4).toString();
+    }
   }
   @Input() set eqHi(value: number) { this.SetValue('eqHi', value); this._lastSettings[1] = value;}
   @Input() set eqMid(value: number) { this.SetValue('eqMid', value); this._lastSettings[2] = value;}
