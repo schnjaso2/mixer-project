@@ -1,0 +1,101 @@
+.section {
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.section__list {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.title {
+    height: 25px;
+    background-color: #0f171c;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.wrapper__half {
+    width: 50%;
+}
+
+.list {
+    border-style: solid;
+    border-color: #0f171c;
+    border-width: 0px 0.2vw;
+    height: calc(100% - 25px);
+}
+
+.list__songs {
+    width: 20vw;
+    background-color: #6c7a8d;
+}
+
+.side-panel {
+    background-color: #0f171c;
+    width: 20vw;
+    padding: 0.5vw;
+}
+
+.openFilesBtn {
+  background-color: #0f171c;
+  cursor: pointer;
+}
+
+.fileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.fileInput+label {
+  cursor: pointer;
+}
+
+.addBtn {
+  background-color: #165266;
+  color: #fff;
+}
+
+.btn-list{
+    margin: 0;
+    padding: 0px 10px;
+    color: #0f171c;
+    border-bottom: 1px solid #165266;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.evenRow {
+    background-color: #bbd;
+    
+}
+.oddRow{
+    background-color: #ddf;
+}
+.songList{
+  list-style: none;
+  color: #000;
+}
+
+.songlist a,
+.songlist .btn {
+  font-size: 0.7em;
+}
+
+.album-art {
+    margin: 0 10px 10px 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.song-info__list{
+    padding: 10px;
+}

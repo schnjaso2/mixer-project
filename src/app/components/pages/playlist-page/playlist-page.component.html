@@ -1,0 +1,87 @@
+<div class="section side-panel">
+  <div class="title">Song info</div>
+  <div>
+    <img src="assets/img/album-art-placeholder.png" alt="album art" class="album-art">
+    <div>
+      <ul class="song-info__list">
+        <li>Artist:</li>
+        <li>Album:</li>
+        <li>Title:</li>
+        <li>Year:</li>
+        <li>Duration:</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section list__songs">
+  <div class="title">Artists</div>
+  <div class="list">
+    <ul class="songList">
+
+      <li class="btn-list" (click)="allArtists()" [class.oddRow]="true">
+        <a>All Artists</a>
+        <clr-icon shape="play" size="16"></clr-icon>
+      </li>
+
+      <li *ngFor="let band of playList; let i = index; let odd = odd; let even = even"
+        [class.oddRow]="odd"
+        [class.evenRow]="even"> 
+        <a class="btn-list" (click)=filterArtist(band.albums)>
+          {{band.name}}
+          <clr-icon shape="play" size="16"></clr-icon>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<div class="section list__songs">
+  <div class="title">Albums</div>
+  <div class="list">
+    <ul class="songList">
+
+      <li class="btn-list" [class.oddRow]="true">
+        <a>All Albums</a>
+        <clr-icon shape="play" size="16"></clr-icon>
+      </li>
+
+        <li *ngFor="let album of albumsFiltered; let odd = odd; let even = even"
+        [class.oddRow]="odd"
+        [class.evenRow]="even"> 
+          <a class="btn-list" (click)=filterAlbum(album.songs)>
+            {{album.name}}
+            <clr-icon shape="play" size="16"></clr-icon>
+          </a>
+        </li>
+
+    </ul>
+  </div>
+</div>
+
+<div class="section list__songs">
+  <div class="title">Songs</div>
+  <div class="list">
+    <ul class="songList">
+
+          <li *ngFor="let song of songsFiltered; let odd = odd; let even = even"
+          [class.oddRow]="odd"
+          [class.evenRow]="even"> 
+            <a class="btn-list" (click)="SelectSong(song)">
+              {{song.title}}
+              <span>{{song.duration | timeMmss}}</span>
+            </a>
+          </li>
+
+    </ul>
+  </div>
+</div>
+
+<div class="section side-panel">
+  <div class="title">Control</div>
+  <input type="file" name="openFiles" id="openFiles" (change)="OpenFiles($event)" multiple class="fileInput">
+  <label for="openFiles" class="btn btn-block">Open Files</label>
+  <button class="btn btn-block addBtn" [clrLoading]="submitLoading" (click)="LoadInDeck('a')">load in deck A</button>
+  <button class="btn btn-block addBtn" [clrLoading]="submitLoading" (click)="LoadInDeck('b')">load in deck B</button>
+</div>

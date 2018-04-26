@@ -1,7 +1,7 @@
 <section>
   <!-- DECK HEADER -->
   <header class="header-2 row">
-    <img class="img" [src]="trackInfo.albumCover" alt="album art" height="60px" width="60px">
+    <img class="img" src="assets/img/album-art-placeholder.png" alt="album art" height="60px" width="60px">
 
     <div class="branding">
       <span class="title"></span>
@@ -23,9 +23,9 @@
   <!-- TEMPO SLIDER -->
   <div class="row">
     <div class="card speed-container col-xl-1 col-md-1" *ngIf="deck == 'b'">
-      <div d3-slider id='speed-slider-b' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'" [maxValue]="1.2"
-        [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'" [thumbSize]="8"
-        [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
+      <div d3-slider id='speed-slider-b' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'"
+        [maxValue]="1.2" [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'"
+        [thumbSize]="8" [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
       </div>
     </div>
 
@@ -35,9 +35,23 @@
 
         <!-- WAVE DISPLAY -->
         <div class=" col-xl-12">
-          <div #canvasWindow class="song-window">
-            <canvas #canvas class="song-wave" [style.animation-duration]="duration + 's'" [style.animation-play-state]="playState ? 'running': 'paused'"></canvas>
+          
+          <div class="song-window">
+            <ng-container #canvasWindow></ng-container>
           </div>
+          <ng-template #canvasTemplate>
+            <canvas #canvas
+              class="song-wave"
+              [style.animation-duration]="duration + 's'" 
+              [style.animation-play-state]="playState ? 'running': 'paused'">
+            </canvas>
+          </ng-template>
+          
+          
+          <div class="progress">
+            <progress [max]="duration" [value]="currentTime || 0" data-displayval="duration"></progress>
+          </div>
+          
         </div>
 
       </div>
@@ -47,7 +61,7 @@
           <button *ngIf="!playState" class="btn" (click)="Play()">
             <clr-icon shape="play" class="is-solid"></clr-icon>
           </button>
-          <button *ngIf="playState" class="btn" (click)="Stop()">
+          <button *ngIf="playState" class="btn" (click)="Pause()">
             <clr-icon shape="pause" class="is-solid"></clr-icon>
           </button>
         </div>
@@ -66,9 +80,9 @@
 
     <!-- TEMPO SLIDER -->
     <div class="card speed-container col-xl-1 col-md-1" *ngIf="deck == 'a'">
-      <div d3-slider id='speed-slider-a' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'" [maxValue]="1.2"
-        [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'" [thumbSize]="8"
-        [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
+      <div d3-slider id='speed-slider-a' class="speed-slider" [vertical]="'true'" [align]="'center'" [length]="150" [direction]="'RTL'"
+        [maxValue]="1.2" [minValue]="0.8" [step]="0.1" [initialValue]="1" [lineWidth]="14" [emptyColor]="'#000'" [color]="'#000'"
+        [thumbSize]="8" [thumbColor]="'#1b2a32'" [thumbStrokeWidth]="2" [thumbStroke]="'#0081A7'" (selectedValue)="onSpeedChange($event)">
       </div>
     </div>
   </div>

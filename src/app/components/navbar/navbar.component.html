@@ -1,15 +1,32 @@
-<header class="header-4">
+<header class="header-3">
   <div class="branding">
     <a href="#" class="nav-link">
       <clr-icon shape="headphones"></clr-icon>
       <span class="title branding__title">Project Mix</span>
     </a>
   </div>
+  <div class="header-nav">
+    
+    <a class="nav-link nav-icon" routerLink='/playlist' routerLinkActive='active'>
+      <clr-icon shape="video-gallery" class="is-solid"></clr-icon>
+    </a>
+    
+    <a class="nav-link nav-icon" routerLink='/effects' routerLinkActive='active'>
+      <clr-icon shape="flame" class="is-solid"></clr-icon>
+    </a>
+    
+    <a class="nav-link nav-icon" routerLink='/settings' routerLinkActive='active'>
+      <clr-icon shape="cog" class="is-solid"></clr-icon>
+    </a>
+  
+  </div>
   <div class="header-actions">
-    <form class="search">
-      <label for="search_input">
-        <input id="search_input" type="text" placeholder="Open or search playlist...">
-      </label>
-    </form>
+    
+    <a class="nav-link nav-icon">
+      <clr-icon shape="user" class="is-solid"></clr-icon>
+    </a>
+    
+    <a href="" class="nav-link nav-text">log out</a>
+  
   </div>
 </header>

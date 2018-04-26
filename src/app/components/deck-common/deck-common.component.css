@@ -8,9 +8,7 @@
 
 .active {
   color: #49afd9;
-  ;
   text-shadow: 1px 0px 10px #49afd9;
-  ;
 }
 
 .song-window {
@@ -37,8 +35,8 @@
 }
 
 .song-wave {
-  height: 100px;
-  width: 1;
+  position: absolute;
+  left: 0;
   padding: 10px 0px;
   background-color: #000;
   animation-name: soundWaveMove;
