@@ -73,3 +73,14 @@
 .btn {
   background-color: #0f171c;
 }
+
+.btn-fx{
+  height: 60px;
+  padding: 7px;
+  margin-bottom: 7px;
+}
+
+.btn-active {
+  background-color: #49afd9;
+  color: #0f171c;
+}

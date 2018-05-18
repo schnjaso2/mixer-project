@@ -35,23 +35,20 @@
 
         <!-- WAVE DISPLAY -->
         <div class=" col-xl-12">
-          
+
           <div class="song-window">
             <ng-container #canvasWindow></ng-container>
           </div>
           <ng-template #canvasTemplate>
-            <canvas #canvas
-              class="song-wave"
-              [style.animation-duration]="duration + 's'" 
-              [style.animation-play-state]="playState ? 'running': 'paused'">
+            <canvas #canvas class="song-wave" [style.animation-duration]="duration + 's'" [style.animation-play-state]="playState ? 'running': 'paused'">
             </canvas>
           </ng-template>
-          
-          
+
+
           <div class="progress">
             <progress [max]="duration" [value]="currentTime || 0" data-displayval="duration"></progress>
           </div>
-          
+
         </div>
 
       </div>
@@ -73,6 +70,34 @@
           <button class="btn btn-icon">
             <clr-icon shape="trash"></clr-icon>
           </button>
+        </div>
+      </div>
+
+      <!-- EFFECTS BUTTONS -->
+      <div class="row">
+        <div class="col-xl-3 col-md-3">
+          <div class="btn-group">
+            <button [class.btn-active]="delayState" class="btn btn-fx" (click)="ToggleDelay()">
+              DLY
+            </button>
+            <div ui-knob value="50" (valueChange)="OnDelayGainChange($event)" [options]="settings.knobs" class="btn btn-fx"></div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-3">
+          <div class="btn-group">
+            <button [class.btn-active]="reverbState" class="btn btn-fx" (click)="ToggleReverb()">
+              RVB
+            </button>
+            <div ui-knob value="50" [options]="settings.knobs" class="btn btn-fx"></div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-3">
+          <div class="btn-group">
+            <button class="btn btn-fx">
+              KILL
+            </button>
+          </div>
         </div>
       </div>
     </div>

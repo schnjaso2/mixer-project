@@ -39,6 +39,9 @@ import { NumToPxPipe } from './pipes/num-to-px.pipe';
 import { D3SliderDirective } from './directives/d3-slider.directive';
 import { KeysPipe } from './pipes/keys.pipe';
 
+// _______________________________________________Other imports
+import { Settings } from './settings';
+
 const routes: Routes = [
   { path: 'playlist', component: PlaylistPageComponent },
   { path: 'effects', component: EffectsPageComponent },
@@ -70,8 +73,8 @@ const routes: Routes = [
     ClarityModule,
     KnobModule,
     RouterModule.forRoot(
-      routes,
-      { enableTracing: true }
+      routes
+      // { enableTracing: true }
     ),
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFireDatabaseModule,
@@ -80,7 +83,8 @@ const routes: Routes = [
   providers: [
     FilesService,
     AudioService,
-    VisualsService
+    VisualsService,
+    Settings
   ],
   bootstrap: [AppComponent]
 })

@@ -23,7 +23,7 @@ export class PlaylistPageComponent implements OnInit
   {
     const filesObject = event.target.files;
     const filesArray = Object.keys(filesObject).map(key => filesObject[key]);
-    
+
     for (const file of filesArray)
     {
       jsMediaTags.read(file, {
@@ -73,11 +73,11 @@ export class PlaylistPageComponent implements OnInit
     this.allAlbums();
   }
 
-  public filterArtist(albums: Array<Album>) 
-  { 
-    this.albumsFiltered = albums; 
+  public filterArtist(albums: Array<Album>)
+  {
+    this.albumsFiltered = albums;
     this.songsFiltered = [];
-    this.allAlbums(); 
+    this.allAlbums();
   }
 
   public allAlbums()

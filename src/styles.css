@@ -20,3 +20,7 @@ body {
   width: 100vw;
   background-color: #bbb;
 }
+
+.knob-inline{
+  display: inline-block;
+}

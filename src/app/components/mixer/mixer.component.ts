@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding, EventEmitter, Output } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { Settings } from '../../settings';
 
 @Component({
   selector: 'app-mixer',
@@ -18,40 +19,37 @@ export class MixerComponent implements OnInit
   // ___________________________Color Change Based On Volume
   public deckASliderColor: string;
   public deckBSliderColor: string;
-  
+
   // ___________________________Volume Controls
   private _volumeAValue: number;
   private _volumeBValue: number;
-  
+
   private _crossFadeAValue: number;
   private _crossFadeBValue: number;
-  
+
   public masterAValue: number;
   public masterBValue: number;
-  
+
   // ___________________________Equilizer Controls
-  private _knobSize: number;
-  public knobOptions: any;
-  
   public hiBandAValue: number;
   public midBandAValue: number;
   public loBandAValue: number;
-  
+
   public hiBandBValue: number;
   public midBandBValue: number;
   public loBandBValue: number;
-  
-  
-  public OnVolumeAChange(value: number) 
-  { 
-    this._volumeAValue = value; 
-    this.CalculateFinalVolume(); 
+
+
+  public OnVolumeAChange(value: number)
+  {
+    this._volumeAValue = value;
+    this.CalculateFinalVolume();
   }
-  
-  public OnVolumeBChange(value: number) 
-  { 
-    this._volumeBValue = value; 
-    this.CalculateFinalVolume(); 
+
+  public OnVolumeBChange(value: number)
+  {
+    this._volumeBValue = value;
+    this.CalculateFinalVolume();
   }
 
   public OnHiBandAChange(value: number) { this.hiBandAValue = value; }
@@ -87,46 +85,13 @@ export class MixerComponent implements OnInit
     return `rgb(${r * value}, ${g * value}, ${b * value})`;
   }
 
-  constructor(){}
-  
+  constructor(public settings: Settings) {}
+
   ngOnInit()
   {
     // ___________________________Set Default Values
     this._crossFadeAValue = this._crossFadeBValue = this._volumeAValue = this._volumeBValue = 0.5;
     this.deckASliderColor = this.ChangeSliderFillColor(1);
     this.deckBSliderColor = this.ChangeSliderFillColor(1);
-
-    this.knobOptions = {
-      readOnly: false,
-      displayInput: false,
-      size: 45,
-      startAngle: -160,
-      endAngle: 160,
-      unit: '%',
-      min: -35,
-      max: 35,
-      trackWidth: 5,
-      barWidth: 5,
-      trackColor: '#000',
-      barColor: '#49afd9',
-      bgColor: '#0F171C',
-      bgFull: true,
-      scale: {
-        enabled: true,
-        type: 'dots',
-        color: '#49afd9',
-        width: 1,
-        quantity: 20,
-        height: 2,
-        spaceWidth: 5
-      },
-      animate: {
-        enabled: true,
-        duration: 1000,
-        ease: 'linear'
-      },
-    };
-
-
   }
 }

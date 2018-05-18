@@ -1,0 +1,9 @@
+.effect-section {
+  float: left;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #0f171c;
+  width: 50vw;
+  padding: 0.5vw;
+  border: 1px solid #fff;
+}
