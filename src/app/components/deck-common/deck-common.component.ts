@@ -30,19 +30,20 @@ export class DeckCommonComponent implements OnInit
   @ViewChild('canvasWindow', {read: ViewContainerRef} ) canvasWindow: ViewContainerRef;
   @ViewChild('canvasTemplate') canvasTemplate: TemplateRef<any>;
   @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('audio') audioRef: ElementRef;
   // An Array to remember last used settings, so th newly loaded song will be the same volume,
   // and have same eq settings.. order is 0: volume, 1: Eq High, 2: Eq Mid, 3: Eq Low.
   private _lastSettings: Array<number> = [0.5, 0.5, 0.5, 0.5];
 
   // ___________________________________________________Indicators
-  private _timer: any;
+  private _timer = null;
   private _soundWaveCanvas: HTMLCanvasElement;
-  public duration: number;
-  public currentTime: number;
+  public duration = 0;
+  public currentTime = 0;
 
-  public playState: boolean;
-  public delayState: boolean;
-  public reverbState: boolean;
+  public playState = false;
+  public delayState = false;
+  public reverbState = false;
 
   private onFileLoaded(audioData: AudioBuffer)
   {
@@ -52,6 +53,8 @@ export class DeckCommonComponent implements OnInit
     this._visualsService.renderWaveForm(audioData, this._soundWaveCanvas);
 
     this.duration = this._audioService.audioDuration;
+    this._audioService.timerUpdatedEmitter.subscribe(t => this.currentTime = t);
+
     // _________________________________Setting values from the last used settings
     this.SetValue('gain', this._lastSettings[0]);
     this.SetValue('eqHi', this._lastSettings[1]);
@@ -59,60 +62,39 @@ export class DeckCommonComponent implements OnInit
     this.SetValue('eqLo', this._lastSettings[3]);
   }
 
-  private Play(): void
+  private PlayPause(): void
   {
-    this._audioService.StartAudio();
-    this.StartTimer();
-  }
-
-  private Pause(): void
-  {
-    this._audioService.PauseAudio();
-    this.StopTimer();
-    if (this.delayState) { this._audioService.DelayOn(); }
-    if (this.reverbState) { this._audioService.ReverbOn(); }
-  }
-
-  private StartTimer(): void
-  {
-    if (this.playState)
-    {
-      this._timer = setInterval(() =>
-        this.currentTime = this._audioService.contextTimer, 500);
-    }
-  }
-
-  private StopTimer(): void
-  {
-    clearInterval(this._timer);
-    this._timer = null;
+    this._audioService.PlayPauseAudio();
+    this.playState = !this.playState;
   }
 
   private ToggleDelay()
   {
-    !this.delayState ? this._audioService.DelayOn() : this._audioService.DelayOff();
     this.delayState = !this.delayState;
+    this._audioService.DelayToggler(this.delayState);
   }
 
   public OnDelayGainChange(value: number) { this.SetValue('delayGain', value / 100); }
 
   private ToggleReverb()
   {
-    !this.reverbState ? this._audioService.ReverbOn() : this._audioService.ReverbOff();
     this.reverbState = !this.reverbState;
+    this._audioService.ReverbToggler(this.reverbState);
   }
+
+  public OnReverbGainChange(value: number) { this.SetValue('reverbGain', value / 100); }
 
   private KillFx()
   {
-    this._audioService.KillFx();
+    // this._audioService.KillFx();
     this.delayState = false;
     this.reverbState = false;
   }
 
   private onSpeedChange(value: number)
   {
-    this._audioService.detune = value;
-    this.duration = this._audioService.audioDuration * ((value - 1) * -1 + 1);
+    // this._audioService.detune = value;
+    // this.duration = this._audioService.audioDuration * ((value - 1) * -1 + 1);
   }
 
   private SetValue(destination: string, value: number)
@@ -134,22 +116,15 @@ export class DeckCommonComponent implements OnInit
 
   ngOnInit()
   {
-    this._timer = null;
-    this.currentTime = 0;
-    this.duration = 0;
-    this.delayState = false;
-    this.reverbState = false;
-
     this._filesService.song.subscribe(song =>
     {
       if (song.deck === this.deck)
       {
-        this._audioService.LoadFile(song.data);
+        this._audioService.LoadFile(song.dataURL, song.arrayBuffer);
       }
     });
 
     this._audioService.decodedAudioEmitter
       .subscribe(audioData => this.onFileLoaded(audioData));
-    this._audioService.playStateEmitter.subscribe(state => this.playState = state);
   }
 }

@@ -31,6 +31,7 @@
 
     <!-- LEFT SECTION -->
     <div class="card col-xl-11 col-md-11">
+      <audio [src]="_fileUrl" #audio></audio>
       <div class="row">
 
         <!-- WAVE DISPLAY -->
@@ -54,22 +55,23 @@
       </div>
       <!-- CONTROL BUTTONS -->
       <div class="row flex-items-xl-between flex-items-md-between">
-        <div class="col-xl-6 col-md-6">
-          <button *ngIf="!playState" class="btn" (click)="Play()">
+        <div class="col-xl-12 col-md-12">
+          <button *ngIf="!playState" class="btn" (click)="PlayPause()">
             <clr-icon shape="play" class="is-solid"></clr-icon>
           </button>
-          <button *ngIf="playState" class="btn" (click)="Pause()">
+          <button *ngIf="playState" class="btn" (click)="PlayPause()">
             <clr-icon shape="pause" class="is-solid"></clr-icon>
           </button>
-        </div>
-        <div>
-          <div class="btn-group">
-            <button class="btn">in</button>
-            <button class="btn">out</button>
-          </div>
-          <button class="btn btn-icon">
-            <clr-icon shape="trash"></clr-icon>
-          </button>
+            <div class="btn-group">
+              <button class="btn">MUTE</button>
+              <button class="btn">
+                TRG
+                <div class="toggle-switch mute-toggle">
+                  <input type="checkbox" id="mute_trigger">
+                  <label for="mute_trigger"></label>
+                </div>
+              </button>
+            </div>
         </div>
       </div>
 
@@ -89,7 +91,7 @@
             <button [class.btn-active]="reverbState" class="btn btn-fx" (click)="ToggleReverb()">
               RVB
             </button>
-            <div ui-knob value="50" [options]="settings.knobs" class="btn btn-fx"></div>
+            <div ui-knob value="50" (valueChange)="OnReverbGainChange($event)" [options]="settings.knobs" class="btn btn-fx"></div>
           </div>
         </div>
         <div class="col-xl-3 col-md-3">

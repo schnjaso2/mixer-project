@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class EffectsPageComponent implements OnInit {
   @HostBinding('class') classes = 'bottom-content';
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+
+    // this.httpClient.get('assets/wav/Cathedral_a_mono.wav', {responseType: 'arraybuffer'})
+    //   .subscribe(response => console.log(response));
   }
 
 }

@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes, Route } from '@angular/router';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // ________________________________________________NPM packages imports
 import { environment } from '../environments/environment';
@@ -30,6 +31,7 @@ import { SettingsPageComponent } from './components/pages/settings-page/settings
 import { PlaylistPageComponent } from './components/pages/playlist-page/playlist-page.component';
 import { EffectsPageComponent } from './components/pages/effects-page/effects-page.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
+import { TestPageComponent } from './components/pages/test-page/test-page.component';
 
 // ________________________________________________Pipes imports
 import { TimeMmssPipe } from './pipes/time-mmss.pipe';
@@ -46,6 +48,7 @@ const routes: Routes = [
   { path: 'playlist', component: PlaylistPageComponent },
   { path: 'effects', component: EffectsPageComponent },
   { path: 'settings', component: SettingsPageComponent },
+  { path: 'test', component: TestPageComponent},
   { path: '', redirectTo: '/playlist', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -65,13 +68,15 @@ const routes: Routes = [
     MainPageComponent,
     PlaylistPageComponent,
     EffectsPageComponent,
-    KeysPipe
+    KeysPipe,
+    TestPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ClarityModule,
     KnobModule,
+    HttpClientModule,
     RouterModule.forRoot(
       routes
       // { enableTracing: true }

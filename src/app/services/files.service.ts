@@ -13,9 +13,15 @@ export class FilesService
     const fileReader = new FileReader();
 
     fileReader.readAsArrayBuffer(file);
-    fileReader.onload = () => this.song.emit({ data: fileReader.result, deck: deck });
+    fileReader.onload = () => this.song.emit(
+      {
+        deck: deck,
+        dataURL: URL.createObjectURL(file),
+        arrayBuffer: fileReader.result
+      });
   }
 
-  constructor() {
+  constructor()
+  {
   }
 }
