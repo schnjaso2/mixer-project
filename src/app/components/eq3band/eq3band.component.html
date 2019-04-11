@@ -1,0 +1,8 @@
+<div>
+  <p>hi</p>
+  <ngx-knob value="0" (valueChange)="OnHiBandChange.emit($event)" [options]="eqKnob"></ngx-knob>
+  <p>mid</p>
+  <ngx-knob value="0" (valueChange)="OnMidBandChange.emit($event)" [options]="eqKnob"></ngx-knob>
+  <p>lo</p>
+  <ngx-knob value="0" (valueChange)="OnLoBandChange.emit($event)" [options]="eqKnob"></ngx-knob>
+</div>

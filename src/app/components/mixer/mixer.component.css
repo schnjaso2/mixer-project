@@ -1,0 +1,47 @@
+:host {
+  width: 14%;
+}
+
+.mixer-header {
+  width: 100%;
+  background-color: var(--secondary-dark);
+}
+
+.volume-slider {
+  box-sizing: border-box;
+  padding: 5px 0 0 0;
+  background-color: #404e60;
+  border: 0.2vw solid #0f171c;
+}
+
+.mixer-eq {
+  box-sizing: border-box;
+  flex-direction: column;
+  text-align: center;
+  color: #bbb;
+  background-color: #0f171c;
+  padding: 0;
+}
+
+.triangle{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.triangle-left {
+  border-width: 0 6vw 20px 0px;
+  border-color: transparent transparent #31b0d5 transparent;
+}
+
+.triangle-right {
+  border-width: 0 0px 20px 6vw;
+  border-color: transparent transparent #31b0d5 transparent;
+}
+.crossfade {
+  box-sizing: border-box;
+  text-align: center;
+  padding-top: 10px;
+  background-color: #6c7a8d;
+}

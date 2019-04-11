@@ -1,0 +1,9 @@
+.settings-page-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #bbb;
+}

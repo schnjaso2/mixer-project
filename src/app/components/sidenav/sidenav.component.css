@@ -1,0 +1,25 @@
+.openFilesBtn {
+  background-color: #0f171c;
+  cursor: pointer;
+}
+
+.fileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.fileInput+label {
+  cursor: pointer;
+}
+
+.songlist {
+  list-style: none;
+}
+
+.songlist a, .songlist .btn {
+  font-size: 0.7em;
+}

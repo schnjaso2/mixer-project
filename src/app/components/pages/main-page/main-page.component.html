@@ -1,0 +1,11 @@
+<section class="main">
+  <app-deck-common [deck]="leftDeck" [volume]='mixer.masterAValue' [eqHi]='mixer.hiBandAValue' [eqMid]='mixer.midBandAValue'
+    [eqLo]='mixer.loBandAValue'>
+  </app-deck-common>
+
+  <app-mixer #mixer></app-mixer>
+
+  <app-deck-common [deck]="rightDeck" [volume]='mixer.masterBValue' [eqHi]='mixer.hiBandBValue' [eqMid]='mixer.midBandBValue'
+    [eqLo]='mixer.loBandBValue'>
+  </app-deck-common>
+</section>

@@ -1,0 +1,10 @@
+<audio [src]="fileLoaded" #audio></audio>
+
+<div class="section side-panel">
+    <div class="title">Control</div>
+    <input type="file" name="openFiles" id="openFiles" (change)="OpenFiles($event)" multiple class="fileInput">
+  </div>
+
+  <button (click)="Play()">
+    Play/Pause
+  </button>
