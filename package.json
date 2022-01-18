@@ -32,7 +32,7 @@
     "angularfire2": "^5.0.0-rc.6.0",
     "core-js": "^2.4.1",
     "d3": "^4.13.0",
-    "firebase": "^4.13.1",
+    "firebase": "^7.22.0",
     "jsmediatags": "^3.8.1",
     "music-metadata": "^0.9.8",
     "musicmetadata": "^2.0.5",
